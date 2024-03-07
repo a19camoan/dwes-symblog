@@ -1,0 +1,26 @@
+{% extends 'layout.twig' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+
+{% block body %}
+    <article class="blog">
+        <div class="date"><time datetime="{{ blog.created_at|date('c') }}">{{ blog.created_at|date('l, F j, Y') }}</time></div>
+        <header>
+        <h2><a href="#">{{ blog.title }}</a></h2>
+        </header>
+        <img src="../img/{{blog.image}}" />
+        <div class="snippet">
+        <p>{{ blog.blog}}</p>
+        </div>
+
+    <section class="comments" id="comments">
+        <section class="previous-comments">
+            <h3>Comments</h3>
+            {% include 'Comment/index.html.twig' with { 'comments': comments } %}
+         </section>
+        
+        <h3>Add Comment</h3>
+            {% include 'Comment/add_comment.html.twig' with { 'blog_id': blog.id } %}
+    </section>
+    </article>
+{% endblock %}

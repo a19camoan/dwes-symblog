@@ -1,0 +1,22 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+    <h1>Add User</h1>
+    <div >
+      {{ responseMessage }}
+    </div>
+
+    <form action="/users/add" method="post" >
+        <label for="">Nombre:</label>
+        <input type="text" name="nombre" ><br>
+        <label for="">User:</label>
+        <input type="text" name="user" ><br>
+        <label for="">Email:</label>
+        <input type="text" name="email" ><br>
+        <label for="">Perfil:</label>
+        <input type="text" name="perfil" placeholder="admin"><br>
+        <label for="">Password:</label>
+        <input type="password" name="password"><br>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}
