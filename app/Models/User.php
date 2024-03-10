@@ -7,4 +7,5 @@
     {
         protected $table = "user";
         protected $fillable = ["name", "password", "email", "profile"];
+        public $timestamps = false;
     }

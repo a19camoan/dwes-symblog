@@ -7,4 +7,5 @@
     {
         protected $table = "comment";
         protected $fillable = ["blog_id", "user", "comment", "approved"];
+        public $timestamps = false;
     }

@@ -11,7 +11,7 @@
     $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
     $dotenv->load();
 
-    $capsule  = new Capsule;
+    $capsule = new Capsule;
 
     $capsule->addConnection([
         "driver" => "mysql",
@@ -26,7 +26,6 @@
 
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
-   
 
     $request = ServerRequestFactory::fromGlobals(
         $_SERVER,
@@ -42,6 +41,67 @@
     $map->get("index", "/", [
         "controller" => "App\Controllers\IndexController",
         "action" => "indexAction"
+    ]);
+    $map->get("addBlog", "/blogs/add", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "getAddBlogAction"
+    ]);
+    $map->post("saveBlog", "/blogs/add", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "getAddBlogAction"
+    ]);
+    $map->get("showBlog", "/blog/{id}", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "showBlogAction"
+    ])->tokens(["id" => "\d+"]);
+    $map->post("addComment", "/comment/save", [
+        "controller" => "App\Controllers\CommentController",
+        "action" => "postCommentAction"
+    ]);
+    $map->get("contact", "/contact", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "contactAction"
+    ]);
+    $map->post("contactPost", "/contact", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "contactAction"
+    ]);
+    $map->get("addUser", "/users/add", [
+        "controller" => "App\Controllers\UsersController",
+        "action" => "getAddUser",
+        "auth" => true
+    ]);
+    $map->post("postaddUser", "/users/add", [
+        "controller" => "App\Controllers\UsersController",
+        "action" => "postAddUser",
+        "auth" => true
+    ]);
+    $map->get("loginForm", "/login", [
+        "controller" => "App\Controllers\AuthController",
+        "action" => "getLogin"
+    ]);
+    $map->post("loginFormPost", "/login", [
+        "controller" => "App\Controllers\AuthController",
+        "action" => "postLogin"
+    ]);
+    $map->get("adminLogout", "/logout", [
+        "controller" => "App\Controllers\AuthController",
+        "action" => "getLogout",
+        "auth" => true
+    ]);
+    $map->get("admin", "/admin", [
+        "controller" => "App\Controllers\AdminController",
+        "action" => "getAdmin",
+        "auth" => true
+    ]);
+    $map->post("adminPost", "/admin", [
+        "controller" => "App\Controllers\AdminController",
+        "action" => "getAdmin",
+        "auth" => true
+    ]);
+    $map->get("about", "/about", [
+        "controller" => "App\Controllers\BlogsController",
+        "action" => "aboutAction"
     ]);
 
     $matcher = $routerContainer->getMatcher();

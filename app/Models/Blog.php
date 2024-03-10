@@ -7,6 +7,7 @@
     {
         protected $table = "blog";
         protected $fillable = ["title", "author", "blog", "image", "tags"];
+        public $timestamps = false;
 
         public function comments()
         {
