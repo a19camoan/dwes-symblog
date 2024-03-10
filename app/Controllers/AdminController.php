@@ -8,6 +8,8 @@
         public function getAdmin()
         {
             ob_start();
-            return $this->renderHTML("admin.twig");
+            return $this->renderHTML("admin.twig", [
+                "profile" => $_SESSION["profile"]
+            ]);
         }
     }

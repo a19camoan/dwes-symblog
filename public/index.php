@@ -8,6 +8,10 @@
 
     session_start();
 
+    if (!isset($_SESSION["profile"])) {
+        $_SESSION["profile"] = "guest";
+    }
+
     $dotenv = Dotenv::createImmutable(__DIR__ . "/../");
     $dotenv->load();
 

@@ -20,7 +20,8 @@
             $user->profile = $postData["profile"];
             $user->save();
             return $this->renderHTML("addUser.twig", [
-                "responseMessage" => "Saved"
+                "responseMessage" => "Saved",
+                "profile" => $_SESSION["profile"]
             ]);
         }
     }

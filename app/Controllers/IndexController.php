@@ -20,7 +20,8 @@
             return $this->renderHTML("index.twig", [
                 "blogs" => $blogs,
                 "latestComments" => $comments,
-                "tags" => $tags
+                "tags" => $tags,
+                "profile" => $_SESSION["profile"]
             ]);
         }
     }

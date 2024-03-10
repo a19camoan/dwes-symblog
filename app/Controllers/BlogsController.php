@@ -26,7 +26,8 @@
                     $image = $files["image"];
                     if ($image->getError() == UPLOAD_ERR_OK) {
                         $fileName = $image->getClientFilename();
-                        $fileName = "image_" . $blog->id . "." . pathinfo($fileName, PATHINFO_EXTENSION);
+                        $fileName = "image_" . $blog->title . "." . pathinfo($fileName, PATHINFO_EXTENSION);
+                        echo $fileName;
                         $image->moveTo("./img/$fileName");
                         $blog->image = $fileName;
                     }

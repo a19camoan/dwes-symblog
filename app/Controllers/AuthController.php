@@ -21,6 +21,7 @@
                 if (password_verify($postData["password"], $user->password)) {
                     ob_start();
                     $_SESSION["userId"] = $user->id;
+                    $_SESSION["profile"] = $user->profile;
                     return new RedirectResponse("/admin");
                 } else {
                     $responseMessage = "Bad credentials";
@@ -29,13 +30,15 @@
                 $responseMessage = "Bad credentials";
             }
             return $this->renderHTML("login.twig", [
-                "responseMessage" => $responseMessage
+                "responseMessage" => $responseMessage,
+                "profile" => $_SESSION["profile"]
             ]);
         }
 
         public function getLogout()
         {
             unset($_SESSION["userId"]);
+            $_SESSION["profile"] = "guest";
             return new RedirectResponse("/login");
         }
     }

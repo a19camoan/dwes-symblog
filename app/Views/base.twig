@@ -21,17 +21,20 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
-                {% if app.user %}
-                  <li><a href="/logout">Logout</a></li>
+                {% if profile == "guest" %}
+                    <li><a href="/login">Login</a></li>
+                {% elseif profile == "admin" %}
+                    <li><a href="/admin">Admin</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 {% else %}
-                  <li><a href="/login">Login</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 {% endif %}
               </ul>
             </nav>
          {% endblock %}
          </div>
          <hgroup>
-         <h2>{% block blog_title %}<a href="#">symblog</a>{% endblock %}</h2>
+         <h2>{% block blog_title %}<a href="/">symblog</a>{% endblock %}</h2>
          <h3>{% block blog_tagline %}<a href="">creating a blog in Symfony2</a>{% endblock %}</h3>
         </hgroup>
         </header>
@@ -45,7 +48,8 @@
 
             <div id="footer">
                 {% block footer %}
-                    Symblog DWES
+                    <p>Symblog DWES</p>
+                    <a href="https://github.com/a19camoan/dwes-symblog" target="_blank">GitHub</a> 
                 {% endblock %}
             </div>
         </section>
